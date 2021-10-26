@@ -12,13 +12,13 @@
     "heroku": "7.59.1",
     "next": "12.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tailwindcss": "^2.2.17"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.7",
     "eslint": "7",
     "eslint-config-next": "12.0.0",
-    "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.17"
+    "postcss": "^8.3.11"
   }
 }
