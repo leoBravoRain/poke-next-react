@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .main-button {
+    @apply bg-orange hover:bg-orange focus:bg-orange active:bg-orange;
+  }
+}

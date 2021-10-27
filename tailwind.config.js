@@ -6,16 +6,18 @@ module.exports = {
     colors: {
       // transparent: "transparent",
       // current: "currentColor",
-      'orange': "#ef4831",
-      'gray': "#aca4a3",
-      'coffe': "#562b23",
-      'black': "#231f1c",
-      'pink': "#e49b8f",
+      orange: "#ef4831",
+      gray: "#aca4a3",
+      coffe: "#562b23",
+      black: "#231f1c",
+      pink: "#e49b8f",
     },
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["active"],
+    },
   },
   plugins: [],
 };
