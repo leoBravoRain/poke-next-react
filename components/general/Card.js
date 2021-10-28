@@ -7,10 +7,18 @@ import H6 from "@material-tailwind/react/Heading6";
 // import Paragraph from "@material-tailwind/react/Paragraph";
 import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
-import { useRouter } from "next/dist/client/router";
+// import { useRouter } from "next/dist/client/router";
+import Link from 'next/link';
 
-export default function PokeCard({ pokemon, selectPokemonHandler }) {
-    const router = useRouter();
+export default function PokeCard({
+    pokemon,
+    selectPokemonHandler,
+    fullInformation = false,
+}) {
+    // const router = useRouter();
+
+    // console.log(pokemon);
+    // console.log(pokemon.types)
 
     return (
         <Card className="mt-5">
@@ -29,22 +37,42 @@ export default function PokeCard({ pokemon, selectPokemonHandler }) {
                     human foundation in truth And I love you like Kanye loves
                     Kanye I love Rick Owens’ bed design but the back is...
                 </Paragraph> */}
+
+                    {/* full information */}
+                    {fullInformation && (
+                        <div className="">
+                            {/* types */}
+                            <div className="">
+                                <p>Types:</p>
+                                {pokemon.types.map((type, idx) => {
+                                    // console.log(type.type.name);
+                                    return (
+                                        <Link href={"/types/"+type.type.name}>
+                                            <div>{type.type.name}</div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </CardBody>
 
             <CardFooter>
-                <Button
-                    onClick={() => {
-                        // console.log(pokemon);
-                        // router.push("details/" + pokemon.name);
-                        selectPokemonHandler(pokemon);
-                    }}
-                    size="lg"
-                    ripple="light"
-                    className="main-button"
-                >
-                    Ver detalles
-                </Button>
+                {!fullInformation && (
+                    <Button
+                        onClick={() => {
+                            // console.log(pokemon);
+                            // router.push("details/" + pokemon.name);
+                            selectPokemonHandler(pokemon);
+                        }}
+                        size="lg"
+                        ripple="light"
+                        className="main-button"
+                    >
+                        Ver detalles
+                    </Button>
+                )}
             </CardFooter>
         </Card>
     );

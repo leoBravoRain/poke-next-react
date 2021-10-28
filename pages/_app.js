@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <PokemonContextProvider>
       <MainLayout>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </MainLayout>
     </PokemonContextProvider>
   );

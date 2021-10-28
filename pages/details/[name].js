@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
+import PokeCard from "../../components/general/Card";
 
 const Details = () => {
   // navigation
@@ -11,9 +12,11 @@ const Details = () => {
 
   //   states
   const [pokemon, setPokemon] = useState({});
-
+  const [loading, setLoading] = useState(true);
 
   const getPokemon = async (pokemonName) => {
+    setLoading(true);
+
     // console.log("call pokemon data");
     // console.log("current offset", offset);
 
@@ -27,22 +30,29 @@ const Details = () => {
 
     const pok = resp.data;
 
-    // console.log(pok);
+    console.log(pok);
 
     // define pokemon data
     var pokemon = {
       name: pok.name[0].toUpperCase() + pok.name.slice(1),
       photo: pok.sprites.front_default,
-      id: pok.id
+      id: pok.id,
+      types: pok.types,
     };
     // pokemon["name"] = pok.name[0].toUpperCase() + pok.name.slice(1);
     // pokemon["photo"] = pok.sprites.front_default((pokemon["id"] = pok.id));
 
-      // set pokemons
-      setPokemon(pokemon);
+    console.log(pokemon);
+
+    // set pokemons
+    setPokemon(pokemon);
+
+    // loading
+    setLoading(false);
   };
 
   useEffect(() => {
+    console.log("name page");
     //   query params
     const { name } = router.query;
 
@@ -53,7 +63,22 @@ const Details = () => {
     getPokemon(name[0].toLowerCase() + name.slice(1));
   }, []);
 
-  return <div>hello I am {pokemon.name}</div>;
+  return (
+    <div>
+      <div className="m-12 mt-24">
+        {!loading ? (
+          <PokeCard
+            // key={idx}
+            pokemon={pokemon}
+            // selectPokemonHandler={selectPokemonHandler}
+            fullInformation={true}
+          />
+        ) : (
+          <div>loading...</div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Details;

@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import NavBarBottom from './NavBarBottom';
+import NavBarTop from './NavBarTop';
 
 const MainLayout = ({children}) => {
   return (
@@ -18,9 +20,9 @@ const MainLayout = ({children}) => {
                   crossOrigin="anonymous"
               />
           </Head>
-          <div>Nav bar</div>
-          <main>{children}</main>
-          <div>footer</div>
+          <NavBarTop/>
+          <main className="mt-10 mb-10">{children}</main>
+          <NavBarBottom/>
       </>
   );
 };

@@ -8,6 +8,7 @@ import axios from "axios";
 import Icon from "@material-tailwind/react/Icon";
 // import { useAppContext } from "../hooks/context-provider";
 import { useRouter } from "next/dist/client/router";
+import Pagination from "../components/general/Pagination";
 
 // const pokemons = [
 //   {
@@ -184,26 +185,7 @@ export default function Home() {
   return (
     <div className="p-2">
       {/* pagination */}
-      <div className="flex justify-around my-3">
-        {/* display left if it's not the first one */}
-        {offset !== 0 && (
-          <div className="border rounded-full items-center justify-center flex border-orange text-orange">
-            <Icon
-              name="keyboard_arrow_left"
-              onClick={() => changePageHandler("left")}
-              size="10"
-              className=""
-            />
-          </div>
-        )}
-        <div className="border rounded-full items-center justify-center flex border-orange text-orange">
-          <Icon
-            name="keyboard_arrow_right"
-            onClick={() => changePageHandler("right")}
-            size="10"
-          />
-        </div>
-      </div>
+      <Pagination offset={offset} changePageHandler={changePageHandler} />
 
       {/* pokemons card */}
       <div className="grid grid-cols-2 gap-4">
@@ -217,6 +199,11 @@ export default function Home() {
           );
         })}
       </div>
+
+      {/* pagination */}
+      {/* toggle first element */}
+      <Pagination offset={offset} changePageHandler={changePageHandler} />
+
     </div>
   );
 }

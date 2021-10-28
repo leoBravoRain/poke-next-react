@@ -11,6 +11,7 @@ module.exports = {
       coffe: "#562b23",
       black: "#231f1c",
       pink: "#e49b8f",
+      white: "#FFFFFF",
     },
     extend: {},
   },
