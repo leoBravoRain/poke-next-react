@@ -52,16 +52,16 @@ const Details = () => {
   };
 
   useEffect(() => {
-    console.log("name page");
-    //   query params
-    const { name } = router.query;
+    // console.log("name page");
 
-    // console.log('name from router: ', name);
-
-    // get data
-    // change first char to lowercase becasue it was upper case
-    getPokemon(name[0].toLowerCase() + name.slice(1));
-  }, []);
+    if (router.isReady) {
+      // console.log("router ready");
+      const { name } = router.query;
+      // get data
+      // change first char to lowercase becasue it was upper case
+      getPokemon(name[0].toLowerCase() + name.slice(1));
+    }
+  }, [router]);
 
   return (
     <div>

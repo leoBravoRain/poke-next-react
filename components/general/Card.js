@@ -8,7 +8,7 @@ import H6 from "@material-tailwind/react/Heading6";
 import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
 // import { useRouter } from "next/dist/client/router";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function PokeCard({
     pokemon,
@@ -47,7 +47,13 @@ export default function PokeCard({
                                 {pokemon.types.map((type, idx) => {
                                     // console.log(type.type.name);
                                     return (
-                                        <Link href={"/types/"+type.type.name}>
+                                        // <Link href={"/type/"+type.type.name}>
+                                        <Link
+                                            href={{
+                                                pathname: "/type/[name]",
+                                                query: { name: type.type.name },
+                                            }}
+                                        >
                                             <div>{type.type.name}</div>
                                         </Link>
                                     );
