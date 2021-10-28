@@ -2,63 +2,65 @@
 // import Image from "next/image";
 // import Button from "@material-tailwind/react/Button";
 import PokeCard from "../components/general/Card";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Icon from "@material-tailwind/react/Icon";
+// import { useAppContext } from "../hooks/context-provider";
+import { useRouter } from "next/dist/client/router";
 
-const pokemons = [
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-  {
-    number: 1,
-    name: "Pikachu",
-    photo: "/images/pikachu.png",
-  },
-];
+// const pokemons = [
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+//   {
+//     number: 1,
+//     name: "Pikachu",
+//     photo: "/images/pikachu.png",
+//   },
+// ];
 
 // api limits
 const limit = 10;
@@ -68,6 +70,13 @@ export default function Home() {
   // statates
   const [pokemons, setPokemons] = useState([]);
   const [offset, setOffset] = useState(0);
+
+  // context
+  // const pokemonCtx = useContext(PokemonContextProvider);
+  // const pokemonCtx = useAppContext();
+
+  // router
+  const router = useRouter();
 
   // get pokemon data
   const getPokemons = async (offsetToUse) => {
@@ -125,6 +134,22 @@ export default function Home() {
     getPokemons(offset);
   }, [offset]);
 
+  // useEffect(() => {
+  //   // get data
+  //   // getPokemons(offset);
+  //   console.log("change pokemon");
+  //   console.log('pokemon: ', pokemonCtx.pokemon);
+  //   // check if pokemon is not empty
+  //   if(Object.keys(pokemonCtx.pokemon).length !== 0) {
+  //     // console.log('navigate');
+  //     router.push("/details/" + pokemonCtx.pokemon.name);
+  //   }
+  //   else {
+  //     console.log('empty')
+  //   }
+
+  // }, [pokemonCtx.pokemon]);
+
   // change page
   const changePageHandler = (arrow) => {
     // console.log("change page: ", arrow);
@@ -142,6 +167,18 @@ export default function Home() {
       // update offset
       setOffset(offset + limit);
     }
+  };
+
+  // select pokemon
+  const selectPokemonHandler = (pokemon) => {
+    // console.log(pokemon);
+    // console.log(pokemonCtx);
+
+    // set pokemon state
+    // pokemonCtx.selectNewPokemon(pokemon);
+
+    // console.log(pokemonCtx.pokemon);
+    router.push("details/" + pokemon.name);
   };
 
   return (
@@ -171,7 +208,13 @@ export default function Home() {
       {/* pokemons card */}
       <div className="grid grid-cols-2 gap-4">
         {pokemons.map((pokemon, idx) => {
-          return <PokeCard key={idx} pokemon={pokemon} />;
+          return (
+            <PokeCard
+              key={idx}
+              pokemon={pokemon}
+              selectPokemonHandler={selectPokemonHandler}
+            />
+          );
         })}
       </div>
     </div>

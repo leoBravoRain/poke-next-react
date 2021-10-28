@@ -7,8 +7,11 @@ import H6 from "@material-tailwind/react/Heading6";
 // import Paragraph from "@material-tailwind/react/Paragraph";
 import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
+import { useRouter } from "next/dist/client/router";
 
-export default function PokeCard({ pokemon }) {
+export default function PokeCard({ pokemon, selectPokemonHandler }) {
+    const router = useRouter();
+
     return (
         <Card className="mt-5">
             <CardImage
@@ -19,9 +22,7 @@ export default function PokeCard({ pokemon }) {
 
             <CardBody>
                 <div className="">
-                    <Small >
-                        #{pokemon.id}
-                    </Small>
+                    <Small>#{pokemon.id}</Small>
                     <H6>{pokemon.name}</H6>
                     {/* <Paragraph color="gray">
                     Don't be scared of the truth because we need to restart the
@@ -32,7 +33,16 @@ export default function PokeCard({ pokemon }) {
             </CardBody>
 
             <CardFooter>
-                <Button size="lg" ripple="light" className="main-button">
+                <Button
+                    onClick={() => {
+                        // console.log(pokemon);
+                        // router.push("details/" + pokemon.name);
+                        selectPokemonHandler(pokemon);
+                    }}
+                    size="lg"
+                    ripple="light"
+                    className="main-button"
+                >
                     Ver detalles
                 </Button>
             </CardFooter>
