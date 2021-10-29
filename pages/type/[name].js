@@ -3,15 +3,19 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 // import PokeCard from "../../components/general/Card";
 import Link from "next/link";
+import Progress from "../../components/general/Progress";
+import H4 from "@material-tailwind/react/Heading4";
+import TypeLabel from "../../components/general/TypeLabel";
+import Small from "@material-tailwind/react/Small";
 
 // key with name of damage relations
 const damage_relations_dict = {
   no_damage_to: "This type has no effect on",
-  half_damage_to: "This type is not very effect against",
-  double_damage_to: "This type is very effect against",
+  half_damage_to: "This type is not very effective against",
+  double_damage_to: "This type is very effective against",
   no_damage_from: "Types that have no effect on this type",
-  half_damage_from: "Types that are not very effect against this type",
-  double_damage_from: "Types that are very effect against this type",
+  half_damage_from: "Types that are not very effective against this type",
+  double_damage_from: "Types that are very effective against this type",
 };
 
 const Detail = () => {
@@ -69,23 +73,6 @@ const Detail = () => {
       const { name } = router.query;
       getData(name);
     }
-
-    // else {
-    //   // router.events.on("routeChangeComplete", () => {
-    //   //   const { name } = router.query;
-    //   //   getData(name);
-    //   // });
-    //   console.log("router not ready");
-    // }
-
-    // //   query params
-    // const { name } = router.query;
-
-    // // console.log('name from router: ', name);
-
-    // // get data
-    // // change first char to lowercase becasue it was upper case
-    // getData(name);
   }, [router]);
 
   return (
@@ -93,39 +80,42 @@ const Detail = () => {
       <div className="m-12 mt-24">
         {!loading ? (
           <>
-            <div>{type.name}</div>
+            <H4 color="black">
+              {type.name[0].toUpperCase() + type.name.slice(1)}
+            </H4>
 
             {/* damage relations */}
-            <div>
+            <div className="flex flex-col space-y-5">
               {Object.keys(type.damage_relations).map((relationName, idx) => {
-                console.log(relationName);
+                // console.log(relationName);
+
                 return (
-                  <div key={idx}>
-                    <p>{damage_relations_dict[relationName]}</p>
+                  <div key={idx} className="">
+                    <Small>{damage_relations_dict[relationName]}:</Small>
 
                     {/* display each type */}
-                    {type.damage_relations[relationName].map((type_, idx) => {
-                      return (
-                        <div key={idx}>
-                          <Link
-                            href={{
-                              pathname: "/type/[name]",
-                              query: { name: type_.name },
-                            }}
-                          >
-                            <p>{type_.name}</p>
-                          </Link>{" "}
-                          {/* <br /> */}
-                        </div>
-                      );
-                    })}
+                    {type.damage_relations[relationName].length > 0 ? (
+                      // <div className="grid grid-cols-3 grid-flow-row gap-3 bg-green-200">
+                      <div className="flex flex-row flex-wrap justify-start space-x-2">
+                        {type.damage_relations[relationName].map((type_) => {
+                          // const obj = {type: type_};
+                          return (
+                            <div className="my-1">
+                              <TypeLabel key={type_} type={{ type: type_ }} />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-md font-semibold">No types</p>
+                    )}
                   </div>
                 );
               })}
             </div>
           </>
         ) : (
-          <div>loading...</div>
+          <Progress />
         )}
       </div>
     </div>

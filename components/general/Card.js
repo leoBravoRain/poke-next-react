@@ -8,7 +8,8 @@ import H6 from "@material-tailwind/react/Heading6";
 import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
+// import Link from "next/link";
+import TypeLabel from "./TypeLabel";
 // import Image from "next/image";
 // import Label from "@material-tailwind/react/Label";
 
@@ -62,22 +63,23 @@ export default function PokeCard({
                             <div className="">
                                 <Small>Types:</Small>
                                 <div className="flex flex-row space-x-2">
-                                    {pokemon.types.map((type, idx) => {
+                                    {pokemon.types.map((type_) => {
                                         // console.log(type.type.name);
                                         return (
                                             // <Link href={"/type/"+type.type.name}>
-                                            <Link
-                                                href={{
-                                                    pathname: "/type/[name]",
-                                                    query: {
-                                                        name: type.type.name,
-                                                    },
-                                                }}
-                                            >
-                                                <div className="bg-orange px-2 py-1 rounded-2xl text-sm uppercase font-semibold text-white">
-                                                    {type.type.name}
-                                                </div>
-                                            </Link>
+                                            // <Link
+                                            //     href={{
+                                            //         pathname: "/type/[name]",
+                                            //         query: {
+                                            //             name: type.type.name,
+                                            //         },
+                                            //     }}
+                                            // >
+                                            //     <div className="bg-orange px-2 py-1 rounded-2xl text-sm uppercase font-semibold text-white">
+                                            //         {type.type.name}
+                                            //     </div>
+                                            // </Link>
+                                            <TypeLabel key={type_} type={type_} />
                                         );
                                     })}
                                 </div>
