@@ -152,6 +152,7 @@ export default function Home() {
         photo: pok.sprites.front_default,
         id: pok.id,
         types: pok.types.map((type) => type.type.name),
+        // isCatched: pokemonCtx.pokemons.find((pokemon) => pokemon.name === pok.name),
       };
     });
 
@@ -164,6 +165,7 @@ export default function Home() {
 
       // this can be better if I add more pokemons until complete the limit
     }
+
     // else {
     //   console.log("all types");
     // }
@@ -171,7 +173,7 @@ export default function Home() {
     // sort by id
     pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
 
-    // console.log("pokemons to display: ", pokemonsList);
+    console.log("pokemons to display: ", pokemonsList);
 
     // set pokemons
     setPokemons(pokemonsList);

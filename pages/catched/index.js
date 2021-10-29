@@ -101,7 +101,7 @@ const types = [
 export default function Home() {
   // statates
   const [pokemons, setPokemons] = useState([]);
-  const [offset, setOffset] = useState(0);
+  // const [offset, setOffset] = useState(0);
   const [typeFilter, setTypeFilter] = useState("all types");
   const [loading, setLoading] = useState(true);
 
@@ -113,44 +113,15 @@ export default function Home() {
   const router = useRouter();
 
   // get pokemon data
-  const getPokemons = async (offsetToUse, typeFilter) => {
+  // const getPokemons = async (offsetToUse, typeFilter) => {
+    const getPokemons = async (typeFilter) => {
     // console.log("call new pokemons");
-    console.log("current offset", offset, "current type: ", typeFilter);
+    // console.log("current offset", offset, "current type: ", typeFilter);
 
     setLoading(true);
 
-    // const resp = await axios
-    //   .get(
-    //     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
-    //   )
-    //   .catch((err) => console.log("Error:", err));
-
-    // const pokemonsToDisplay = resp.data.results;
-
-    // // get pokemon data
-    // // getPokemonData(resp.data.results);
-
-    // // console.log("get detailed data from pokemons");
+    // get pokemons from context
     const pokemonsList = pokemonCtx.pokemons;
-
-    // await Promise.all(
-    //   pokemonsToDisplay.map((pokemon) => {
-    //     return axios
-    //       .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-    //       .then((result) => {
-    //         pokemonsList.push(result.data);
-    //       });
-    //   })
-    // );
-
-    // pokemonsList = pokemonsList.map((pok) => {
-    //   return {
-    //     name: pok.name[0].toUpperCase() + pok.name.slice(1),
-    //     photo: pok.sprites.front_default,
-    //     id: pok.id,
-    //     types: pok.types.map((type) => type.type.name),
-    //   };
-    // });
 
     // filter
     if (typeFilter !== "all types") {
@@ -161,14 +132,9 @@ export default function Home() {
 
       // this can be better if I add more pokemons until complete the limit
     }
-    // else {
-    //   console.log("all types");
-    // }
 
     // sort by id
     pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
-
-    // console.log("pokemons to display: ", pokemonsList);
 
     // set pokemons
     setPokemons(pokemonsList);
@@ -179,26 +145,27 @@ export default function Home() {
   // callback function of offset change state
   useEffect(() => {
     // get data
-    getPokemons(offset, typeFilter);
-  }, [offset, typeFilter]);
+    // getPokemons(offset, typeFilter);
+    getPokemons(typeFilter);
+  }, [typeFilter]);
 
   // change page
-  const changePageHandler = (arrow) => {
-    // previous
-    if (arrow === "left") {
-      if (offset > 0) {
-        // update offset
-        setOffset((prev) => prev - limit);
-      }
-    }
+  // const changePageHandler = (arrow) => {
+  //   // previous
+  //   if (arrow === "left") {
+  //     if (offset > 0) {
+  //       // update offset
+  //       setOffset((prev) => prev - limit);
+  //     }
+  //   }
 
-    // next
-    else {
-      // here it should check the max page
-      // update offset
-      setOffset(offset + limit);
-    }
-  };
+  //   // next
+  //   else {
+  //     // here it should check the max page
+  //     // update offset
+  //     setOffset(offset + limit);
+  //   }
+  // };
 
   // select pokemon
   const selectPokemonHandler = (pokemon) => {
@@ -244,7 +211,7 @@ export default function Home() {
       {!loading ? (
         <>
           {/* pagination */}
-          <Pagination offset={offset} changePageHandler={changePageHandler} />
+          {/* <Pagination offset={offset} changePageHandler={changePageHandler} /> */}
 
           {/* pokemons card */}
           {pokemons.length > 0 ? (
@@ -255,6 +222,7 @@ export default function Home() {
                     key={idx}
                     pokemon={pokemon}
                     selectPokemonHandler={selectPokemonHandler}
+                    tryToCatch={false}
                   />
                 );
               })}
@@ -263,7 +231,7 @@ export default function Home() {
             // or no pokemons message
             <div className="text-center">
               <p className="text-md font-semibold">
-                No pokemons with this type in this batch
+                No catched pokemons with this type in this batch
               </p>
             </div>
           )}
@@ -271,9 +239,9 @@ export default function Home() {
 
           {/* pagination */}
           {/* toggle first element */}
-          {pokemons.length > 0 && (
+          {/* {pokemons.length > 0 && (
             <Pagination offset={offset} changePageHandler={changePageHandler} />
-          )}
+          )} */}
         </>
       ) : (
         <Progress />

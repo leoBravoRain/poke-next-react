@@ -20,6 +20,7 @@ export default function PokeCard({
     addPokemonHandler,
     animate,
     catched,
+    tryToCatch = true,
 }) {
     const router = useRouter();
 
@@ -31,9 +32,9 @@ export default function PokeCard({
             <CardImage
                 src={pokemon.photo}
                 alt="Card Image"
-                className={`bg-white ${
-                    animate && catched  && "animate-pulse"
-                } ${animate && !catched  && "animate-bounce"}`}
+                className={`bg-white ${animate && catched && "animate-pulse"} ${
+                    animate && !catched && "animate-bounce"
+                }`}
             />
 
             <CardBody>
@@ -115,18 +116,20 @@ export default function PokeCard({
                         </Button>
 
                         {/* catch pokemon */}
-                        <Button
-                            onClick={() => {
-                                // console.log(pokemon);
-                                // router.push("details/" + pokemon.name);
-                                addPokemonHandler(pokemon);
-                            }}
-                            // size="md"
-                            size="sm"
-                            className="main-button"
-                        >
-                            Try to catch it!
-                        </Button>
+                        {tryToCatch && (
+                            <Button
+                                onClick={() => {
+                                    // console.log(pokemon);
+                                    // router.push("details/" + pokemon.name);
+                                    addPokemonHandler(pokemon);
+                                }}
+                                // size="md"
+                                size="sm"
+                                className="main-button"
+                            >
+                                Try to catch it!
+                            </Button>
+                        )}
                     </div>
                 )}
             </CardFooter>
