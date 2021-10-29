@@ -5,7 +5,7 @@ const Pagination = ({offset, changePageHandler}) => {
     console.log(offset);
 
     return (
-        <div className="flex justify-around my-3">
+        <div className="flex justify-around my-3 md:justify-center md:space-x-20">
             {/* display left if it's not the first one */}
             {offset !== 0 && (
                 <div className="border rounded-full items-center justify-center flex border-orange text-orange cursor-pointer">
