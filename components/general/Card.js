@@ -7,16 +7,17 @@ import H6 from "@material-tailwind/react/Heading6";
 // import Paragraph from "@material-tailwind/react/Paragraph";
 import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
-// import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
+// import Label from "@material-tailwind/react/Label";
 
 export default function PokeCard({
     pokemon,
     selectPokemonHandler,
     fullInformation = false,
 }) {
-    // const router = useRouter();
+    const router = useRouter();
 
     // console.log(pokemon);
     // console.log(pokemon.types)
@@ -46,23 +47,40 @@ export default function PokeCard({
                     {/* full information */}
                     {fullInformation && (
                         <div className="">
+                            {/* general information */}
+                            <Small>
+                                Height: {pokemon.height} [dm]
+                                <br />
+                            </Small>
+                            <Small>
+                                Weigh: {pokemon.weight} [hg] <br />
+                            </Small>
+                            <Small>
+                                Experience gained for defeating: {pokemon.baseExperience}
+                            </Small>
                             {/* types */}
                             <div className="">
-                                <p>Types:</p>
-                                {pokemon.types.map((type, idx) => {
-                                    // console.log(type.type.name);
-                                    return (
-                                        // <Link href={"/type/"+type.type.name}>
-                                        <Link
-                                            href={{
-                                                pathname: "/type/[name]",
-                                                query: { name: type.type.name },
-                                            }}
-                                        >
-                                            <div>{type.type.name}</div>
-                                        </Link>
-                                    );
-                                })}
+                                <Small>Types:</Small>
+                                <div className="flex flex-row space-x-2">
+                                    {pokemon.types.map((type, idx) => {
+                                        // console.log(type.type.name);
+                                        return (
+                                            // <Link href={"/type/"+type.type.name}>
+                                            <Link
+                                                href={{
+                                                    pathname: "/type/[name]",
+                                                    query: {
+                                                        name: type.type.name,
+                                                    },
+                                                }}
+                                            >
+                                                <div className="bg-orange px-2 py-1 rounded-2xl text-sm uppercase font-semibold text-white">
+                                                    {type.type.name}
+                                                </div>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     )}

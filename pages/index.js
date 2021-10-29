@@ -13,6 +13,7 @@ import Pagination from "../components/general/Pagination";
 
 import Dropdown from "@material-tailwind/react/Dropdown";
 import DropdownItem from "@material-tailwind/react/DropdownItem";
+import Progress from "../components/general/Progress";
 // import Progress from "@material-tailwind/react/Progress";
 
 // const pokemons = [
@@ -274,20 +275,7 @@ export default function Home() {
           )}
         </>
       ) : (
-        <div className="flex flex-row justify-center items-center my-10 animate-pulse">
-          {/* <Progress color="deepOrange" value="50" percentage={false} /> */}
-          {/* <p className="text-md font-semibold animate-spin ">Loading...</p> */}
-          <div className="h-12 w-12 mr-5">
-            <Image
-              src="/images/pokeball.png"
-              width="224"
-              height="225"
-              className=""
-              layout="responsive"
-            />
-          </div>
-          <p>Loading ...</p>
-        </div>
+        <Progress/>
       )}
     </div>
   );

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import PokeCard from "../../components/general/Card";
+import Progress from "../../components/general/Progress";
 
 const Details = () => {
   // navigation
@@ -38,6 +39,9 @@ const Details = () => {
       photo: pok.sprites.front_default,
       id: pok.id,
       types: pok.types,
+      height: pok.height,
+      weight: pok.weight,
+      baseExperience: pok.base_experience,
     };
     // pokemon["name"] = pok.name[0].toUpperCase() + pok.name.slice(1);
     // pokemon["photo"] = pok.sprites.front_default((pokemon["id"] = pok.id));
@@ -74,7 +78,7 @@ const Details = () => {
             fullInformation={true}
           />
         ) : (
-          <div>loading...</div>
+          <Progress />
         )}
       </div>
     </div>
