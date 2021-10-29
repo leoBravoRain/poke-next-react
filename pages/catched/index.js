@@ -174,7 +174,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-2">
+    <>
       {/* filter */}
       <div className="justify-center flex">
         <Dropdown
@@ -215,7 +215,7 @@ export default function Home() {
 
           {/* pokemons card */}
           {pokemons.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-24 px-5">
               {pokemons.map((pokemon, idx) => {
                 return (
                   <PokeCard
@@ -246,6 +246,6 @@ export default function Home() {
       ) : (
         <Progress />
       )}
-    </div>
+    </>
   );
 }

@@ -32,9 +32,12 @@ export default function PokeCard({
             <CardImage
                 src={pokemon.photo}
                 alt="Card Image"
-                className={`bg-white ${animate && catched && "animate-pulse"} ${
-                    animate && !catched && "animate-bounce"
-                }`}
+                // className={`bg-white ${animate && catched && "animate-bounce"}
+                //  ${
+                //     animate && !catched && "animate-bounce"
+                // }`
+                className={`bg-white ${animate && catched && "animate-pulse"}
+                `}
             />
 
             <CardBody>
