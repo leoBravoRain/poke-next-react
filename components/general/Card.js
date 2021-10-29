@@ -18,8 +18,8 @@ export default function PokeCard({
     selectPokemonHandler,
     fullInformation = false,
     addPokemonHandler,
-    animate,
-    catched,
+    animate = false,
+    catched = false,
     tryToCatch = true,
 }) {
     const router = useRouter();

@@ -7,6 +7,7 @@ import Progress from "../../components/general/Progress";
 import H4 from "@material-tailwind/react/Heading4";
 import TypeLabel from "../../components/general/TypeLabel";
 import Small from "@material-tailwind/react/Small";
+import PokeCard from "../../components/general/Card";
 
 // key with name of damage relations
 const damage_relations_dict = {
@@ -29,6 +30,48 @@ const Detail = () => {
   //   states
   const [type, setType] = useState({});
   const [loading, setLoading] = useState(true);
+  const [pokemons, setPokemons] = useState([]);
+
+  // get pokemon data
+  const getPokemons = async (pokemonsToDisplay) => {
+    // console.log("call new pokemons");
+    // console.log("current offset", offset, "current type: ", typeFilter);
+
+    setLoading(true);
+
+    // console.log("get detailed data from pokemons");
+    const pokemonsList = [];
+
+    await Promise.all(
+      pokemonsToDisplay.map((pokemon) => {
+        return axios
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.pokemon.name}`)
+          .then((result) => {
+            pokemonsList.push(result.data);
+          });
+      })
+    );
+
+    pokemonsList = pokemonsList.map((pok) => {
+      return {
+        name: pok.name[0].toUpperCase() + pok.name.slice(1),
+        photo: pok.sprites.front_default,
+        id: pok.id,
+        // types: pok.types.map((type) => type.type.name),
+        // isCatched: pokemonCtx.pokemons.find((pokemon) => pokemon.name === pok.name),
+      };
+    });
+
+    // sort by id
+    pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
+
+    console.log("pokemons to display: ", pokemonsList);
+
+    // set pokemons
+    setPokemons(pokemonsList);
+
+    setLoading(false);
+  };
 
   const getData = async (name) => {
     setLoading(true);
@@ -53,16 +96,18 @@ const Detail = () => {
       name: type.name,
       damage_relations: type.damage_relations,
     };
-    // // pokemon["name"] = pok.name[0].toUpperCase() + pok.name.slice(1);
-    // // pokemon["photo"] = pok.sprites.front_default((pokemon["id"] = pok.id));
 
-    console.log(type_);
+    // console.log(type_);
 
     // set type
     setType(type_);
 
-    // loading
-    setLoading(false);
+    // // loading
+    // setLoading(false);
+
+    // get pokemons data
+    // console.log(type.pokemon.slice(0,5))
+    getPokemons(type.pokemon.slice(0, 10));
   };
 
   useEffect(() => {
@@ -112,6 +157,34 @@ const Detail = () => {
                   </div>
                 );
               })}
+            </div>
+
+            {/* display some pokemons */}
+            <div className="mt-5">
+              <Small className="">Some pokemons of this type:</Small>
+              <div className="grid grid-cols-2 gap-3 mt-5">
+                {pokemons.length > 0 &&
+                  pokemons.map((pokemon) => {
+                    return (
+                      <PokeCard
+                        pokemon={pokemon}
+                        selectPokemonHandler={() => {
+                          router.push(
+                            {
+                              pathname: "/details/[name]",
+                              query: { name: pokemon.name },
+                            }
+                            // "/details/" +
+                            //   // (pokemon.name[0].tuUpperCase() + pokemon.name.slice(1))
+                            //   pokemon.name
+                          );
+                        }}
+                        fullInformation={false}
+                        tryToCatch={false}
+                      />
+                    );
+                  })}
+              </div>
             </div>
           </>
         ) : (
