@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const NavBarTop = () => {
     return (
-        <div className="fixed top-0 left-0 right-0 bg-orange p-2 text-white flex flex-row justify-center md:justify-between">
+        <div className="fixed top-0 left-0 right-0 bg-orange p-2 text-white flex flex-row justify-center md:justify-between z-50">
             {/* home page */}
             <Link
                 href={{

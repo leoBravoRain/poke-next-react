@@ -7,7 +7,7 @@ import Progress from "../../components/general/Progress";
 import H4 from "@material-tailwind/react/Heading4";
 import TypeLabel from "../../components/general/TypeLabel";
 import Small from "@material-tailwind/react/Small";
-import PokeCard from "../../components/general/Card";
+import PokeCard from "../../components/general/PokeCard";
 
 // key with name of damage relations
 const damage_relations_dict = {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
-import PokeCard from "../../components/general/Card";
+import PokeCard from "../../components/general/PokeCard";
 import Progress from "../../components/general/Progress";
 
 const Details = () => {
