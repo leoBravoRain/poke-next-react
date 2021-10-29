@@ -10,7 +10,7 @@ const Progress = () => {
                     src="/images/pokeball.png"
                     width="224"
                     height="225"
-                    className=""
+                    className="rounded-full"
                     layout="responsive"
                 />
             </div>

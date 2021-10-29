@@ -17,6 +17,9 @@ export default function PokeCard({
     pokemon,
     selectPokemonHandler,
     fullInformation = false,
+    addPokemonHandler,
+    animate,
+    catched,
 }) {
     const router = useRouter();
 
@@ -28,7 +31,9 @@ export default function PokeCard({
             <CardImage
                 src={pokemon.photo}
                 alt="Card Image"
-                className="bg-white"
+                className={`bg-white ${
+                    animate && catched  && "animate-pulse"
+                } ${animate && !catched  && "animate-bounce"}`}
             />
 
             <CardBody>
@@ -57,7 +62,8 @@ export default function PokeCard({
                                 Weigh: {pokemon.weight} [hg] <br />
                             </Small>
                             <Small>
-                                Experience gained for defeating: {pokemon.baseExperience}
+                                Experience gained for defeating:{" "}
+                                {pokemon.baseExperience}
                             </Small>
                             {/* types */}
                             <div className="">
@@ -79,7 +85,10 @@ export default function PokeCard({
                                             //         {type.type.name}
                                             //     </div>
                                             // </Link>
-                                            <TypeLabel key={type_} type={type_} />
+                                            <TypeLabel
+                                                key={type_}
+                                                type={type_}
+                                            />
                                         );
                                     })}
                                 </div>
@@ -91,18 +100,34 @@ export default function PokeCard({
 
             <CardFooter className="flex justify-center">
                 {!fullInformation && (
-                    <Button
-                        onClick={() => {
-                            // console.log(pokemon);
-                            // router.push("details/" + pokemon.name);
-                            selectPokemonHandler(pokemon);
-                        }}
-                        // size="md"
-                        ripple="light"
-                        className="main-button"
-                    >
-                        Ver
-                    </Button>
+                    <div className="flex flex-col space-y-2">
+                        <Button
+                            onClick={() => {
+                                // console.log(pokemon);
+                                // router.push("details/" + pokemon.name);
+                                selectPokemonHandler(pokemon);
+                            }}
+                            size="sm"
+                            ripple="light"
+                            className="main-button"
+                        >
+                            See
+                        </Button>
+
+                        {/* catch pokemon */}
+                        <Button
+                            onClick={() => {
+                                // console.log(pokemon);
+                                // router.push("details/" + pokemon.name);
+                                addPokemonHandler(pokemon);
+                            }}
+                            // size="md"
+                            size="sm"
+                            className="main-button"
+                        >
+                            Try to catch it!
+                        </Button>
+                    </div>
                 )}
             </CardFooter>
         </Card>

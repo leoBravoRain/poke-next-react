@@ -1,19 +1,19 @@
 // import Head from "next/head";
 // import Image from "next/image";
 // import Button from "@material-tailwind/react/Button";
-import PokeCard from "../components/general/Card";
+import PokeCard from "../../components/general/Card";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 // import Icon from "@material-tailwind/react/Icon";
-import { useAppContext } from "../hooks/context-provider";
+import { useAppContext } from "../../hooks/context-provider";
 import { useRouter } from "next/dist/client/router";
-import Image from "next/image";
-import Pagination from "../components/general/Pagination";
+// import Image from "next/image";
+import Pagination from "../../components/general/Pagination";
 
 import Dropdown from "@material-tailwind/react/Dropdown";
 import DropdownItem from "@material-tailwind/react/DropdownItem";
-import Progress from "../components/general/Progress";
+import Progress from "../../components/general/Progress";
 // import Progress from "@material-tailwind/react/Progress";
 
 // const pokemons = [
@@ -97,16 +97,13 @@ const types = [
   "unknown",
   "shadow",
 ];
+
 export default function Home() {
   // statates
   const [pokemons, setPokemons] = useState([]);
   const [offset, setOffset] = useState(0);
   const [typeFilter, setTypeFilter] = useState("all types");
   const [loading, setLoading] = useState(true);
-  const [alert_, setAlert] = useState({});
-  // const [alert_, setAlert] = useState({message:"hy", type:"error"});
-  const [showAlert, setShowAlert] = useState(false);
-  // const [showAlert, setShowAlert] = useState(true);
 
   // context
   // const pokemonCtx = useContext(PokemonContextProvider);
@@ -118,42 +115,42 @@ export default function Home() {
   // get pokemon data
   const getPokemons = async (offsetToUse, typeFilter) => {
     // console.log("call new pokemons");
-    // console.log("current offset", offset, "current type: ", typeFilter);
+    console.log("current offset", offset, "current type: ", typeFilter);
 
     setLoading(true);
 
-    const resp = await axios
-      .get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
-      )
-      .catch((err) => console.log("Error:", err));
+    // const resp = await axios
+    //   .get(
+    //     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
+    //   )
+    //   .catch((err) => console.log("Error:", err));
 
-    const pokemonsToDisplay = resp.data.results;
+    // const pokemonsToDisplay = resp.data.results;
 
-    // get pokemon data
-    // getPokemonData(resp.data.results);
+    // // get pokemon data
+    // // getPokemonData(resp.data.results);
 
-    // console.log("get detailed data from pokemons");
-    const pokemonsList = [];
+    // // console.log("get detailed data from pokemons");
+    const pokemonsList = pokemonCtx.pokemons;
 
-    await Promise.all(
-      pokemonsToDisplay.map((pokemon) => {
-        return axios
-          .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-          .then((result) => {
-            pokemonsList.push(result.data);
-          });
-      })
-    );
+    // await Promise.all(
+    //   pokemonsToDisplay.map((pokemon) => {
+    //     return axios
+    //       .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+    //       .then((result) => {
+    //         pokemonsList.push(result.data);
+    //       });
+    //   })
+    // );
 
-    pokemonsList = pokemonsList.map((pok) => {
-      return {
-        name: pok.name[0].toUpperCase() + pok.name.slice(1),
-        photo: pok.sprites.front_default,
-        id: pok.id,
-        types: pok.types.map((type) => type.type.name),
-      };
-    });
+    // pokemonsList = pokemonsList.map((pok) => {
+    //   return {
+    //     name: pok.name[0].toUpperCase() + pok.name.slice(1),
+    //     photo: pok.sprites.front_default,
+    //     id: pok.id,
+    //     types: pok.types.map((type) => type.type.name),
+    //   };
+    // });
 
     // filter
     if (typeFilter !== "all types") {
@@ -185,16 +182,6 @@ export default function Home() {
     getPokemons(offset, typeFilter);
   }, [offset, typeFilter]);
 
-  // callback function to hide alert
-  useEffect(() => {
-    // to hide alert
-    if (showAlert) {
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-    }
-  }, [showAlert]);
-
   // change page
   const changePageHandler = (arrow) => {
     // previous
@@ -219,47 +206,8 @@ export default function Home() {
     router.push("details/" + pokemon.name);
   };
 
-  // add new pokemon to favorites
-  const addPokemonHandler = (pokemon) => {
-    // alert("catched it");
-    const val = Math.floor(Math.random() * 3);
-    // const val = 1;
-    // console.log(val);
-    if (val == 1) {
-      pokemonCtx.addNewPokemon(pokemon);
-      // alert("Congrats, you catched it!");
-      setShowAlert(true);
-      setAlert({ message: "Congrats, you catched it!", type: "success" });
-    } else {
-      setShowAlert(true);
-      setAlert({
-        message:
-          "Wow! " +
-          pokemon.name +
-          " is fighting hard and it was not catched! Try it again! You can do it!",
-        type: "fail",
-      });
-      // alert(
-      //   "Wow! " +
-      //     pokemon.name +
-      //     " is fighting hard and it was not catched! Try it again! You can do it!"
-      // );
-    }
-  };
-
   return (
     <div className="p-2">
-      {/* alert emssages */}
-      {showAlert && (
-        <div
-          className={`z-50 fixed bottom-14 right-0 left-0 m-2 shadow-lg text-white text-xl font-semibold p-2 rounded-xl ${
-            alert_.type === "success" ? "bg-orange" : "bg-gray"
-          }`}
-        >
-          <p>{alert_.message}</p>
-        </div>
-      )}
-
       {/* filter */}
       <div className="justify-center flex">
         <Dropdown
@@ -303,16 +251,11 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               {pokemons.map((pokemon, idx) => {
                 return (
-                  // <div className={`${showAlert && 'animate-spin'}`}>
                   <PokeCard
                     key={idx}
                     pokemon={pokemon}
                     selectPokemonHandler={selectPokemonHandler}
-                    addPokemonHandler={addPokemonHandler}
-                    animate={showAlert}
-                    catched={alert_.type === "success"}
                   />
-                  // </div>
                 );
               })}
             </div>

@@ -2,21 +2,22 @@ import { createContext, useContext, useState } from "react";
 
 // define context
 const PokemonContext = createContext({
-  pokemon: {},
-  selectNewPokemon: (pokemon) => {},
+  pokemons: [],
+  addNewPokemon: (pokemon) => {},
 });
 
 // add context logic
 export function PokemonContextProvider(props) {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
 
-  function selectNewPokemon(pokemon) {
-    setPokemon(pokemon);
+  function addNewPokemon(pokemon) {
+    console.log("addNewPokemon", pokemon);
+    setPokemons([...pokemons, pokemon]);
   }
 
   const context = {
-    pokemon: pokemon,
-    selectNewPokemon: selectNewPokemon,
+    pokemons: pokemons,
+    addNewPokemon: addNewPokemon,
   };
 
   return (

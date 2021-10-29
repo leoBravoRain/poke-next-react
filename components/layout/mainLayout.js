@@ -4,7 +4,7 @@ import NavBarTop from './NavBarTop';
 
 const MainLayout = ({children}) => {
   return (
-      <div className="bg-red-200">
+      <div className="">
           <Head>
 
               {/* tailwind material resources */}
