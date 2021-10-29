@@ -129,9 +129,9 @@ const Detail = () => {
       <div className="flex flex-col">
         {!loading ? (
           <>
-            <H4 color="black">
+            <p className="text-2xl font-semibold mb-2">
               {type.name[0].toUpperCase() + type.name.slice(1)}
-            </H4>
+            </p>
 
             {/* damage relations */}
             <div className="flex flex-col space-y-5">
@@ -140,7 +140,7 @@ const Detail = () => {
 
                 return (
                   <div key={idx} className="">
-                    <Small>{damage_relations_dict[relationName]}:</Small>
+                    <p className="xsmall-text">{damage_relations_dict[relationName]}:</p>
 
                     {/* display each type */}
                     {type.damage_relations[relationName].length > 0 ? (
@@ -165,7 +165,7 @@ const Detail = () => {
 
             {/* display some pokemons */}
             <div className="mt-5 flex flex-col justify-center">
-              <Small className="">Some pokemons of this type:</Small>
+              <p className="small-text">Some pokemons of this type:</p>
               <div className="grid grid-cols-2 gap-3 mt-5 md:grid-cols-4 md:gap-10">
                 {pokemons.length > 0 &&
                   pokemons.map((pokemon) => {

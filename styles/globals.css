@@ -6,4 +6,10 @@
   .main-button {
     @apply bg-orange hover:bg-orange focus:bg-orange active:bg-orange;
   }
+  .small-text {
+    @apply text-sm;
+  }
+  .xsmall-text {
+    @apply text-xs
+  }
 }

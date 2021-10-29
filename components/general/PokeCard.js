@@ -1,12 +1,12 @@
 import React from "react";
-import Card from "@material-tailwind/react/Card";
-import CardImage from "@material-tailwind/react/CardImage";
-import CardBody from "@material-tailwind/react/CardBody";
-import CardFooter from "@material-tailwind/react/CardFooter";
-import H6 from "@material-tailwind/react/Heading6";
+// import Card from "@material-tailwind/react/Card";
+// import CardImage from "@material-tailwind/react/CardImage";
+// import CardBody from "@material-tailwind/react/CardBody";
+// import CardFooter from "@material-tailwind/react/CardFooter";
+// import H6 from "@material-tailwind/react/Heading6";
 // import Paragraph from "@material-tailwind/react/Paragraph";
 import Button from "@material-tailwind/react/Button";
-import Small from "@material-tailwind/react/Small";
+// import Small from "@material-tailwind/react/Small";
 import { useRouter } from "next/dist/client/router";
 // import Link from "next/link";
 import TypeLabel from "./TypeLabel";
@@ -52,9 +52,10 @@ export default function PokeCard({
                 {/* <div>
                         <Image src={pokemon.photo} width="32" height="32" />
                     </div> */}
-
-                <Small>#{pokemon.id}</Small>
-                <H6>{pokemon.name}</H6>
+                <div className="mt-4 mb-8 mx-3 ">
+                    <p className="small-text">#{pokemon.id}</p>
+                    <p className="font-semibold text-base">{pokemon.name}</p>
+                </div>
                 {/* <Paragraph color="gray">
                     Don't be scared of the truth because we need to restart the
                     human foundation in truth And I love you like Kanye loves
@@ -63,22 +64,22 @@ export default function PokeCard({
 
                 {/* full information */}
                 {fullInformation && (
-                    <div className="">
-                        {/* general information */}
-                        <Small>
+                    <div className="px-2 mb-5">
+                        {/* geeral information */}
+                        <p className="xsmall-text pb-2">
                             Height: {pokemon.height} [dm]
                             <br />
-                        </Small>
-                        <Small>
+                        </p>
+                        <p className="xsmall-text pb-2">
                             Weigh: {pokemon.weight} [hg] <br />
-                        </Small>
-                        <Small>
+                        </p>
+                        <p className="xsmall-text pb-2">
                             Experience gained for defeating:{" "}
                             {pokemon.baseExperience}
-                        </Small>
+                        </p>
                         {/* types */}
                         <div className="">
-                            <Small>Types:</Small>
+                            <p className="xsmall-text pb-2">Types:</p>
                             <div className="flex flex-row space-x-2">
                                 {pokemon.types.map((type_) => {
                                     // console.log(type.type.name);
@@ -105,7 +106,7 @@ export default function PokeCard({
                 )}
                 {/* card footer */}
                 {!fullInformation && (
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col space-y-4 justify-center items-center mb-8">
                         <Button
                             onClick={() => {
                                 // console.log(pokemon);
@@ -114,7 +115,7 @@ export default function PokeCard({
                             }}
                             size="sm"
                             ripple="light"
-                            className="main-button"
+                            className="main-button w-min"
                         >
                             See
                         </Button>

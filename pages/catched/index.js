@@ -1,7 +1,7 @@
 // import Head from "next/head";
 // import Image from "next/image";
 // import Button from "@material-tailwind/react/Button";
-import PokeCard from "../../components/general/Card";
+import PokeCard from "../../components/general/PokeCard";
 import { useEffect, useState } from "react";
 // import axios from "axios";
 
