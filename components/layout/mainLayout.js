@@ -4,7 +4,7 @@ import NavBarTop from './NavBarTop';
 
 const MainLayout = ({children}) => {
   return (
-      <>
+      <div className="bg-red-200">
           <Head>
 
               {/* tailwind material resources */}
@@ -21,9 +21,9 @@ const MainLayout = ({children}) => {
               />
           </Head>
           <NavBarTop/>
-          <main className="mt-10 mb-10">{children}</main>
+          <main className="mt-10 mb-10 bg-gray-200">{children}</main>
           <NavBarBottom/>
-      </>
+      </div>
   );
 };
 

@@ -9,6 +9,7 @@ import Button from "@material-tailwind/react/Button";
 import Small from "@material-tailwind/react/Small";
 // import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PokeCard({
     pokemon,
@@ -25,11 +26,15 @@ export default function PokeCard({
             <CardImage
                 src={pokemon.photo}
                 alt="Card Image"
-                className="bg-orange"
+                className="bg-white"
             />
 
             <CardBody>
                 <div className="">
+                    {/* <div>
+                        <Image src={pokemon.photo} width="32" height="32" />
+                    </div> */}
+
                     <Small>#{pokemon.id}</Small>
                     <H6>{pokemon.name}</H6>
                     {/* <Paragraph color="gray">
@@ -64,7 +69,7 @@ export default function PokeCard({
                 </div>
             </CardBody>
 
-            <CardFooter>
+            <CardFooter className="flex justify-center">
                 {!fullInformation && (
                     <Button
                         onClick={() => {
@@ -72,11 +77,11 @@ export default function PokeCard({
                             // router.push("details/" + pokemon.name);
                             selectPokemonHandler(pokemon);
                         }}
-                        size="lg"
+                        // size="md"
                         ripple="light"
                         className="main-button"
                     >
-                        Ver detalles
+                        Ver
                     </Button>
                 )}
             </CardFooter>
