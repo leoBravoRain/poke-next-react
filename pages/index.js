@@ -250,7 +250,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-2">
+    <>
       {/* alert emssages */}
       {showAlert && (
         <div
@@ -337,6 +337,6 @@ export default function Home() {
       ) : (
         <Progress />
       )}
-    </div>
+    </>
   );
 }

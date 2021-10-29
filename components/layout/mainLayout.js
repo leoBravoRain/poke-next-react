@@ -21,7 +21,7 @@ const MainLayout = ({children}) => {
               />
           </Head>
           <NavBarTop/>
-          <main className="mt-12 mb-10 bg-gray-200">{children}</main>
+          <main className="mt-16 mb-10 px-4 bg-gray-200">{children}</main>
           <NavBarBottom/>
       </div>
   );

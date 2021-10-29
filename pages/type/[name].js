@@ -107,7 +107,11 @@ const Detail = () => {
 
     // get pokemons data
     // console.log(type.pokemon.slice(0,5))
-    getPokemons(type.pokemon.slice(0, 10));
+    // getPokemons(type.pokemon.slice(0, 12));
+    // get random pokemons
+    getPokemons(
+      type.pokemon.sort(() => Math.random() - Math.random()).slice(0, 12)
+    );
   };
 
   useEffect(() => {
@@ -121,8 +125,8 @@ const Detail = () => {
   }, [router]);
 
   return (
-    <div>
-      <div className="m-12 mt-24">
+    <>
+      <div className="flex flex-col">
         {!loading ? (
           <>
             <H4 color="black">
@@ -160,9 +164,9 @@ const Detail = () => {
             </div>
 
             {/* display some pokemons */}
-            <div className="mt-5">
+            <div className="mt-5 flex flex-col justify-center">
               <Small className="">Some pokemons of this type:</Small>
-              <div className="grid grid-cols-2 gap-3 mt-5">
+              <div className="grid grid-cols-2 gap-3 mt-5 md:grid-cols-4 md:gap-10">
                 {pokemons.length > 0 &&
                   pokemons.map((pokemon) => {
                     return (
@@ -191,7 +195,7 @@ const Detail = () => {
           <Progress />
         )}
       </div>
-    </div>
+    </>
   );
 };
 
