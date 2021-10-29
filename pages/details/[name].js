@@ -68,20 +68,22 @@ const Details = () => {
   }, [router]);
 
   return (
-    <div>
-      <div className="m-12 mt-24">
+    <>
+      <div className="m-12 mt-24 flex justify-center">
         {!loading ? (
+          <div className="">
           <PokeCard
             // key={idx}
             pokemon={pokemon}
             // selectPokemonHandler={selectPokemonHandler}
             fullInformation={true}
           />
+          </div>
         ) : (
           <Progress />
         )}
       </div>
-    </div>
+    </>
   );
 };
 
