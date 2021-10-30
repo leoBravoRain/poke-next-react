@@ -17,7 +17,7 @@ const NavBarTop = ({ changeDarkModeHandler, darkMode }) => {
             </Link>
 
             {/* items */}
-            <div className="flex md:flex md:flex-row pr-5">
+            <div className="flex md:flex md:flex-row md:items-center md:justify-center pr-5">
                 {/* dark mode */}
                 <div className="flex items-center bg-">
                     <DarkModeSwitch

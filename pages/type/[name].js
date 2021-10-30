@@ -140,7 +140,9 @@ const Detail = () => {
 
                 return (
                   <div key={idx} className="">
-                    <p className="xsmall-text">{damage_relations_dict[relationName]}:</p>
+                    <p className="xsmall-text">
+                      {damage_relations_dict[relationName]}:
+                    </p>
 
                     {/* display each type */}
                     {type.damage_relations[relationName].length > 0 ? (
@@ -170,22 +172,24 @@ const Detail = () => {
                 {pokemons.length > 0 &&
                   pokemons.map((pokemon) => {
                     return (
-                      <PokeCard
-                        pokemon={pokemon}
-                        selectPokemonHandler={() => {
-                          router.push(
-                            {
-                              pathname: "/details/[name]",
-                              query: { name: pokemon.name },
-                            }
-                            // "/details/" +
-                            //   // (pokemon.name[0].tuUpperCase() + pokemon.name.slice(1))
-                            //   pokemon.name
-                          );
-                        }}
-                        fullInformation={false}
-                        tryToCatch={false}
-                      />
+                      <div className="flex justify-center">
+                        <PokeCard
+                          pokemon={pokemon}
+                          selectPokemonHandler={() => {
+                            router.push(
+                              {
+                                pathname: "/details/[name]",
+                                query: { name: pokemon.name },
+                              }
+                              // "/details/" +
+                              //   // (pokemon.name[0].tuUpperCase() + pokemon.name.slice(1))
+                              //   pokemon.name
+                            );
+                          }}
+                          fullInformation={false}
+                          tryToCatch={false}
+                        />
+                      </div>
                     );
                   })}
               </div>
