@@ -31,7 +31,7 @@ export default function PokeCard({
         // <div className="w-full bg-white rounded-xl overflow-hdden shadow-md p-4 mt-5 ">
         <div className="w-full  rounded-xl rounded-t-2xl shadow-md flex flex-col justify-center border border-gray-200 md:w-max">
             {/* card header */}
-            <div class="flex justify-center rounded-t-xl h-28 w-full bg-gray-200">
+            <div className="flex justify-center rounded-t-xl h-28 w-full bg-gray-200">
                 <Image
                     src={pokemon.photo}
                     alt="Card Image"

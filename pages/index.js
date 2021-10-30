@@ -117,75 +117,138 @@ export default function Home() {
   const router = useRouter();
 
   // get pokemon data
-  const getPokemons = async (offsetToUse, typeFilter) => {
-    // console.log("call new pokemons");
-    // console.log("current offset", offset, "current type: ", typeFilter);
+  // const getPokemons = async (offsetToUse, typeFilter) => {
+  //   // console.log("call new pokemons");
+  //   // console.log("current offset", offset, "current type: ", typeFilter);
 
-    setLoading(true);
+  //   setLoading(true);
 
-    const resp = await axios
-      .get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
-      )
-      .catch((err) => console.log("Error:", err));
+  //   const resp = await axios
+  //     .get(
+  //       `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
+  //     )
+  //     .catch((err) => console.log("Error:", err));
 
-    const pokemonsToDisplay = resp.data.results;
+  //   const pokemonsToDisplay = resp.data.results;
 
-    // get pokemon data
-    // getPokemonData(resp.data.results);
+  //   // get pokemon data
+  //   // getPokemonData(resp.data.results);
 
-    // console.log("get detailed data from pokemons");
-    const pokemonsList = [];
+  //   // console.log("get detailed data from pokemons");
+  //   const pokemonsList = [];
 
-    await Promise.all(
-      pokemonsToDisplay.map((pokemon) => {
-        return axios
-          .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-          .then((result) => {
-            pokemonsList.push(result.data);
-          });
-      })
-    );
+  //   await Promise.all(
+  //     pokemonsToDisplay.map((pokemon) => {
+  //       return axios
+  //         .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+  //         .then((result) => {
+  //           pokemonsList.push(result.data);
+  //         });
+  //     })
+  //   );
 
-    pokemonsList = pokemonsList.map((pok) => {
-      return {
-        name: pok.name[0].toUpperCase() + pok.name.slice(1),
-        photo: pok.sprites.front_default,
-        id: pok.id,
-        types: pok.types.map((type) => type.type.name),
-        // isCatched: pokemonCtx.pokemons.find((pokemon) => pokemon.name === pok.name),
-      };
-    });
+  //   pokemonsList = pokemonsList.map((pok) => {
+  //     return {
+  //       name: pok.name[0].toUpperCase() + pok.name.slice(1),
+  //       photo: pok.sprites.front_default,
+  //       id: pok.id,
+  //       types: pok.types.map((type) => type.type.name),
+  //       // isCatched: pokemonCtx.pokemons.find((pokemon) => pokemon.name === pok.name),
+  //     };
+  //   });
 
-    // filter
-    if (typeFilter !== "all types") {
-      // console.log("filter by type");
-      pokemonsList = pokemonsList.filter((pokemon) =>
-        pokemon.types.some((type) => typeFilter === type)
-      );
+  //   // filter
+  //   if (typeFilter !== "all types") {
+  //     // console.log("filter by type");
+  //     pokemonsList = pokemonsList.filter((pokemon) =>
+  //       pokemon.types.some((type) => typeFilter === type)
+  //     );
 
-      // this can be better if I add more pokemons until complete the limit
-    }
+  //     // this can be better if I add more pokemons until complete the limit
+  //   }
 
-    // else {
-    //   console.log("all types");
-    // }
+  //   // else {
+  //   //   console.log("all types");
+  //   // }
 
-    // sort by id
-    pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
+  //   // sort by id
+  //   pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
 
-    console.log("pokemons to display: ", pokemonsList);
+  //   console.log("pokemons to display: ", pokemonsList);
 
-    // set pokemons
-    setPokemons(pokemonsList);
+  //   // set pokemons
+  //   setPokemons(pokemonsList);
 
-    setLoading(false);
-  };
+  //   setLoading(false);
+  // };
 
   // callback function of offset change state
   useEffect(() => {
     // get data
+    const getPokemons = async (offsetToUse, typeFilter) => {
+      setLoading(true);
+
+      const resp = await axios
+        .get(
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsetToUse}`
+        )
+        .catch((err) => console.log("Error:", err));
+
+      const pokemonsToDisplay = resp.data.results;
+
+      // get pokemon data
+      // getPokemonData(resp.data.results);
+
+      // console.log("get detailed data from pokemons");
+      const pokemonsList = [];
+
+      await Promise.all(
+        pokemonsToDisplay.map((pokemon) => {
+          return axios
+            .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+            .then((result) => {
+              pokemonsList.push(result.data);
+            });
+        })
+      );
+
+      pokemonsList = pokemonsList.map((pok) => {
+        return {
+          name: pok.name[0].toUpperCase() + pok.name.slice(1),
+          photo: pok.sprites.front_default,
+          id: pok.id,
+          types: pok.types.map((type) => type.type.name),
+          // isCatched: pokemonCtx.pokemons.find((pokemon) => pokemon.name === pok.name),
+        };
+      });
+
+      // filter
+      if (typeFilter !== "all types") {
+        // console.log("filter by type");
+        pokemonsList = pokemonsList.filter((pokemon) =>
+          pokemon.types.some((type) => typeFilter === type)
+        );
+
+        // this can be better if I add more pokemons until complete the limit
+      }
+
+      // else {
+      //   console.log("all types");
+      // }
+
+      // sort by id
+      pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
+
+      console.log("pokemons to display: ", pokemonsList);
+
+      // set pokemons
+      setPokemons(pokemonsList);
+
+      setLoading(false);
+    };
+
     getPokemons(offset, typeFilter);
+
   }, [offset, typeFilter]);
 
   // callback function to hide alert
@@ -307,14 +370,14 @@ export default function Home() {
               {pokemons.map((pokemon, idx) => {
                 return (
                   <div className="flex justify-center">
-                  <PokeCard
-                    key={idx}
-                    pokemon={pokemon}
-                    selectPokemonHandler={selectPokemonHandler}
-                    addPokemonHandler={addPokemonHandler}
-                    animate={showAlert}
-                    catched={alert_.type === "success"}
-                  />
+                    <PokeCard
+                      key={idx}
+                      pokemon={pokemon}
+                      selectPokemonHandler={selectPokemonHandler}
+                      addPokemonHandler={addPokemonHandler}
+                      animate={showAlert}
+                      catched={alert_.type === "success"}
+                    />
                   </div>
                 );
               })}

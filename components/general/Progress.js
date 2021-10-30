@@ -12,6 +12,7 @@ const Progress = () => {
                     height="225"
                     className="rounded-full"
                     layout="responsive"
+                    alt="pokeball"
                 />
             </div>
             <p>Loading ...</p>

@@ -112,38 +112,37 @@ export default function Home() {
   // router
   const router = useRouter();
 
-  // get pokemon data
-  // const getPokemons = async (offsetToUse, typeFilter) => {
-    const getPokemons = async (typeFilter) => {
-    // console.log("call new pokemons");
-    // console.log("current offset", offset, "current type: ", typeFilter);
-
-    setLoading(true);
-
-    // get pokemons from context
-    const pokemonsList = pokemonCtx.pokemons;
-
-    // filter
-    if (typeFilter !== "all types") {
-      // console.log("filter by type");
-      pokemonsList = pokemonsList.filter((pokemon) =>
-        pokemon.types.some((type) => typeFilter === type)
-      );
-
-      // this can be better if I add more pokemons until complete the limit
-    }
-
-    // sort by id
-    pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
-
-    // set pokemons
-    setPokemons(pokemonsList);
-
-    setLoading(false);
-  };
-
   // callback function of offset change state
   useEffect(() => {
+    // get pokemon data
+    const getPokemons = async (typeFilter) => {
+      // console.log("call new pokemons");
+      // console.log("current offset", offset, "current type: ", typeFilter);
+
+      setLoading(true);
+
+      // get pokemons from context
+      const pokemonsList = pokemonCtx.pokemons;
+
+      // filter
+      if (typeFilter !== "all types") {
+        // console.log("filter by type");
+        pokemonsList = pokemonsList.filter((pokemon) =>
+          pokemon.types.some((type) => typeFilter === type)
+        );
+
+        // this can be better if I add more pokemons until complete the limit
+      }
+
+      // sort by id
+      pokemonsList = pokemonsList.sort((a, b) => a.id - b.id);
+
+      // set pokemons
+      setPokemons(pokemonsList);
+
+      setLoading(false);
+    };
+
     // get data
     // getPokemons(offset, typeFilter);
     getPokemons(typeFilter);

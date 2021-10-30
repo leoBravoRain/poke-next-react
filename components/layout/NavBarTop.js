@@ -7,9 +7,7 @@ const NavBarTop = ({ changeDarkModeHandler, darkMode }) => {
         <div className="fixed top-0 left-0 right-0 bg-orange p-2 text-white flex flex-row justify-center space-x-10 md:justify-between z-50 shadow-lg border-b-2 border-orange dark:bg-black dark:border-white">
             {/* home page */}
             <Link
-                href={{
-                    pathname: "/",
-                }}
+                href="/"
             >
                 <p className="text-3xl font-semibold md:ml-5 cursor-pointer">
                     Pokedex
@@ -28,18 +26,14 @@ const NavBarTop = ({ changeDarkModeHandler, darkMode }) => {
 
                 <div className="hidden md:flex md:flex-row">
                     <Link
-                        href={{
-                            pathname: "/",
-                        }}
+                        href="/"
                     >
                         <p className="text-xl font-semibold md:ml-5 cursor-pointer">
                             Home
                         </p>
                     </Link>
                     <Link
-                        href={{
-                            pathname: "/catched",
-                        }}
+                        href="/catched"
                     >
                         <p className="text-xl font-semibold md:ml-5 cursor-pointer">
                             Catched

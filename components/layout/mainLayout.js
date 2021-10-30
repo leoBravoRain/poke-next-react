@@ -7,31 +7,20 @@ const MainLayout = ({children}) => {
     // states
     const [darkMode, setDarkMode] = useState(false);
 
-    // function to set darkmode
-    const changeDarkModeHandler = () => {
-
-        // console.log(darkMode);
-
+    useEffect(() => {
+        // console.log("change on darkmode");
+        
         const prevTheme = !darkMode ? "dark" : "light";
         const newTheme = darkMode ? "dark" : "light";
-
-        console.log('remove ', prevTheme);
-
+    
+        // console.log('remove ', prevTheme);
+    
         const root = window.document.documentElement;
         root.classList.remove(prevTheme);
         // root.classList.remove('light');
-
-        console.log("add ", newTheme);
+    
+        // console.log("add ", newTheme);
         root.classList.add(newTheme);
-        // root.classList.add('dark');
-        // console.log(root);
-
-        // setDarkMode(!darkMode);
-        // setTheme(colorTheme);
-    };
-
-    useEffect(() => {
-        console.log("change on darkmode");
 
         // // get user preferences about dark mode
         // setDarkMode(user.darkMode);
@@ -40,7 +29,7 @@ const MainLayout = ({children}) => {
         // if (user.darkMode) {
         //     changeDarkModeHandler();
         // }
-        changeDarkModeHandler();
+        // changeDarkModeHandler();
     }, [darkMode]);
 
     return (
