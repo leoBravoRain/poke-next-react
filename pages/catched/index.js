@@ -229,7 +229,7 @@ export default function Home() {
             </div>
           ) : (
             // or no pokemons message
-            <div className="text-center">
+            <div className="text-center mt-5">
               <p className="text-md font-semibold">
                 No catched pokemons with this type in this batch
               </p>
