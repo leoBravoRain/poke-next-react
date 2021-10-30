@@ -151,8 +151,8 @@ const Detail = () => {
                         {type.damage_relations[relationName].map((type_) => {
                           // const obj = {type: type_};
                           return (
-                            <div className="my-1">
-                              <TypeLabel key={type_} type={{ type: type_ }} />
+                            <div className="my-1" key={type_}>
+                              <TypeLabel type={{ type: type_ }} />
                             </div>
                           );
                         })}
@@ -172,7 +172,7 @@ const Detail = () => {
                 {pokemons.length > 0 &&
                   pokemons.map((pokemon) => {
                     return (
-                      <div className="flex justify-center">
+                      <div className="flex justify-center" key={pokemon.id}>
                         <PokeCard
                           pokemon={pokemon}
                           selectPokemonHandler={() => {
