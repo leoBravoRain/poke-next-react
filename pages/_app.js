@@ -7,9 +7,11 @@ import {PokemonContextProvider} from "../hooks/context-provider";
 function MyApp({ Component, pageProps }) {
   return (
     <PokemonContextProvider>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      {/* <div className="dark:bg-black h-full"> */}
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      {/* </div> */}
     </PokemonContextProvider>
   );
 }

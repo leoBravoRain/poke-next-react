@@ -63,8 +63,12 @@ const MainLayout = ({children}) => {
                 changeDarkModeHandler={() => setDarkMode(!darkMode)}
                 darkMode={darkMode}
             />
-            <main className="pt-16 pb-14 px-4 dark:text-white">{children}</main>
+            <main className="pt-16 pb-14 px-4 dark:text-white min-h-screen">{children}</main>
             <NavBarBottom />
+
+            {/* <footer className="dark:text-white">
+                asjdoiasd
+            </footer> */}
         </div>
     );
 };
