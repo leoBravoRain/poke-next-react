@@ -367,11 +367,11 @@ export default function Home() {
           {/* pokemons card */}
           {pokemons.length > 0 ? (
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-10 px-5">
-              {pokemons.map((pokemon, idx) => {
+              {pokemons.map((pokemon) => {
                 return (
-                  <div className="flex justify-center">
+                  <div className="flex justify-center" key={pokemon.id}>
                     <PokeCard
-                      key={idx}
+                      // key={idx}
                       pokemon={pokemon}
                       selectPokemonHandler={selectPokemonHandler}
                       addPokemonHandler={addPokemonHandler}
