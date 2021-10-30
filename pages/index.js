@@ -9,7 +9,7 @@ import axios from "axios";
 // import Icon from "@material-tailwind/react/Icon";
 import { useAppContext } from "../hooks/context-provider";
 import { useRouter } from "next/dist/client/router";
-import Image from "next/image";
+// import Image from "next/image";
 import Pagination from "../components/general/Pagination";
 
 import Dropdown from "@material-tailwind/react/Dropdown";

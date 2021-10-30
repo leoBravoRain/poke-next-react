@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "../../hooks/context-provider";
 import { useRouter } from "next/dist/client/router";
 // import Image from "next/image";
-import Pagination from "../../components/general/Pagination";
+// import Pagination from "../../components/general/Pagination";
 
 import Dropdown from "@material-tailwind/react/Dropdown";
 import DropdownItem from "@material-tailwind/react/DropdownItem";

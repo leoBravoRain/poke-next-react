@@ -39,9 +39,11 @@ export default function PokeCard({
                     //  ${
                     //     animate && !catched && "animate-bounce"
                     // }`
-                    // className={`bg-white ${animate && catched && "animate-pulse"}
-                    // `}
-                    className="w-full rounded-t-xl"
+                    className={`${
+                        animate && catched && "animate-pulse"
+                    }
+                    w-full rounded-t-xl`}
+                    // className="w-full rounded-t-xl"
                     width="96"
                     height="96"
                     // layout="responsive"

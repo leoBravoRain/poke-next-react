@@ -2,11 +2,11 @@ import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 // import PokeCard from "../../components/general/Card";
-import Link from "next/link";
+// import Link from "next/link";
 import Progress from "../../components/general/Progress";
-import H4 from "@material-tailwind/react/Heading4";
+// import H4 from "@material-tailwind/react/Heading4";
 import TypeLabel from "../../components/general/TypeLabel";
-import Small from "@material-tailwind/react/Small";
+// import Small from "@material-tailwind/react/Small";
 import PokeCard from "../../components/general/PokeCard";
 
 // key with name of damage relations
