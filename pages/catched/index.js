@@ -215,7 +215,7 @@ export default function Home() {
 
           {/* pokemons card */}
           {pokemons.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-24 px-5">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-24 px-5 mt-4">
               {pokemons.map((pokemon, idx) => {
                 return (
                   <PokeCard

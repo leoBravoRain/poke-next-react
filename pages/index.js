@@ -303,10 +303,10 @@ export default function Home() {
 
           {/* pokemons card */}
           {pokemons.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-24 px-5">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-10 px-5">
               {pokemons.map((pokemon, idx) => {
                 return (
-                  // <div className={`${showAlert && 'animate-spin'}`}>
+                  <div className="flex justify-center">
                   <PokeCard
                     key={idx}
                     pokemon={pokemon}
@@ -315,7 +315,7 @@ export default function Home() {
                     animate={showAlert}
                     catched={alert_.type === "success"}
                   />
-                  // </div>
+                  </div>
                 );
               })}
             </div>

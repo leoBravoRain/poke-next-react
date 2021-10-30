@@ -1,17 +1,28 @@
 // import Icon from "@material-tailwind/react/Icon";
 import Link from "next/link";
+import DarkModeSwitch from "./DarkMode";
 
-const NavBarTop = () => {
+const NavBarTop = ({ changeDarkModeHandler, darkMode }) => {
     return (
-        <div className="fixed top-0 left-0 right-0 bg-orange p-2 text-white flex flex-row justify-center md:justify-between z-50 shadow-lg">
+        <div className="fixed top-0 left-0 right-0 bg-orange p-2 text-white flex flex-row justify-center md:justify-between z-50 shadow-lg border-b-2 border-orange dark:bg-black dark:border-white">
             {/* home page */}
             <Link
                 href={{
                     pathname: "/",
                 }}
             >
-                <p className="text-3xl font-semibold md:ml-5 cursor-pointer">Pokedex</p>
+                <p className="text-3xl font-semibold md:ml-5 cursor-pointer">
+                    Pokedex
+                </p>
             </Link>
+
+            {/* dark mode */}
+            <div>
+                <DarkModeSwitch
+                    changeDarkModeHandler={changeDarkModeHandler}
+                    darkMode={darkMode}
+                />
+            </div>
             {/* items */}
             <div className="hidden md:flex md:flex-row pr-5">
                 <Link
