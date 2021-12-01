@@ -8,28 +8,13 @@ const MainLayout = ({children}) => {
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
-        // console.log("change on darkmode");
         
         const prevTheme = !darkMode ? "dark" : "light";
         const newTheme = darkMode ? "dark" : "light";
     
-        // console.log('remove ', prevTheme);
-    
         const root = window.document.documentElement;
         root.classList.remove(prevTheme);
-        // root.classList.remove('light');
-    
-        // console.log("add ", newTheme);
         root.classList.add(newTheme);
-
-        // // get user preferences about dark mode
-        // setDarkMode(user.darkMode);
-
-        // // set dark mode
-        // if (user.darkMode) {
-        //     changeDarkModeHandler();
-        // }
-        // changeDarkModeHandler();
     }, [darkMode]);
 
     return (
@@ -55,9 +40,6 @@ const MainLayout = ({children}) => {
             <main className="pt-16 pb-14 px-4 dark:text-white min-h-screen">{children}</main>
             <NavBarBottom />
 
-            {/* <footer className="dark:text-white">
-                asjdoiasd
-            </footer> */}
         </div>
     );
 };

@@ -1,4 +1,3 @@
-// import Icon from "@material-tailwind/react/Icon";
 import Link from "next/link";
 import DarkModeSwitch from "./DarkMode";
 

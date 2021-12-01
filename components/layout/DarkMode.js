@@ -11,10 +11,6 @@ const DarkModeSwitch = ({ changeDarkModeHandler, darkMode }) => {
                 checked={darkMode}
                 offColor="#dddddd"
                 onColor="#ef4831"
-                // style= {{
-                //   backgroundColor: "red",
-                // }}
-                // className="bg-red-100"
             />
             <p className="m-auto ml-1 text-xs">{darkMode ? "Dark" : "Light"}</p>
         </div>

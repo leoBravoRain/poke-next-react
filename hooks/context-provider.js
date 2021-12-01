@@ -11,7 +11,6 @@ export function PokemonContextProvider(props) {
   const [pokemons, setPokemons] = useState([]);
 
   function addNewPokemon(pokemon) {
-    // console.log("addNewPokemon", pokemon);
     // check if pokemon already exists
     if (!pokemons.find((p) => p.name === pokemon.name)) {
       setPokemons([...pokemons, pokemon]);

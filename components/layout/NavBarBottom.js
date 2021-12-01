@@ -9,9 +9,7 @@ const NavBarBottom = () => {
                 <Link href="/">
                     <Icon
                         name="home"
-                        // onClick={() => }
                         size="4xl"
-                        // className="text-white bg-white"
                     />
                 </Link>
             </div>
@@ -20,11 +18,8 @@ const NavBarBottom = () => {
             <div className="text-white items-center justify-center flex">
                 <Link href="/catched">
                     <Icon
-                        // name="catchingPokemon"
                         name="favorites"
-                        // onClick={() => }
                         size="4xl"
-                        // className="text-white bg-white"
                     />
                 </Link>
             </div>

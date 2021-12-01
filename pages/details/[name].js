@@ -8,33 +8,20 @@ const Details = () => {
   // navigation
   const router = useRouter();
 
-  //   //   query params
-  //   const { name } = router.query;
-
   //   states
   const [pokemon, setPokemon] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // console.log("name page");
 
     const getPokemon = async (pokemonName) => {
       setLoading(true);
-
-      // console.log("call pokemon data");
-      // console.log("current offset", offset);
-
-      // console.log(pokemonName);
 
       const resp = await axios
         .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
         .catch((err) => console.log("Error:", err));
 
-      // console.log(resp);
-
       const pok = resp.data;
-
-      console.log(pok);
 
       // define pokemon data
       var pokemon = {
@@ -46,10 +33,6 @@ const Details = () => {
         weight: pok.weight,
         baseExperience: pok.base_experience,
       };
-      // pokemon["name"] = pok.name[0].toUpperCase() + pok.name.slice(1);
-      // pokemon["photo"] = pok.sprites.front_default((pokemon["id"] = pok.id));
-
-      console.log(pokemon);
 
       // set pokemons
       setPokemon(pokemon);
@@ -59,7 +42,6 @@ const Details = () => {
     };
     
     if (router.isReady) {
-      // console.log("router ready");
       const { name } = router.query;
       // get data
       // change first char to lowercase becasue it was upper case
@@ -73,9 +55,7 @@ const Details = () => {
         {!loading ? (
           <div className="">
             <PokeCard
-              // key={idx}
               pokemon={pokemon}
-              // selectPokemonHandler={selectPokemonHandler}
               fullInformation={true}
             />
           </div>

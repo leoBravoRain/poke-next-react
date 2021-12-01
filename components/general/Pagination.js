@@ -12,9 +12,7 @@ const Pagination = ({offset, changePageHandler}) => {
                     <Icon
                         name="keyboard_arrow_left"
                         onClick={() => changePageHandler("left")}
-                        // onClick={changePageHandler("left")}
                         size="10"
-                        // className="cursor-pointer"
                     />
                 </div>
             )}
@@ -22,7 +20,6 @@ const Pagination = ({offset, changePageHandler}) => {
                 <Icon
                     name="keyboard_arrow_right"
                     onClick={() => changePageHandler("right")}
-                    // onClick={changePageHandler("right")}
                     size="10"
                 />
             </div>
